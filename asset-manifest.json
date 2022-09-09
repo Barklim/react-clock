@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-clock/static/css/main.2eb52c6a.chunk.css",
+    "main.js": "/react-clock/static/js/main.5b8a36a2.chunk.js",
+    "main.js.map": "/react-clock/static/js/main.5b8a36a2.chunk.js.map",
+    "runtime-main.js": "/react-clock/static/js/runtime-main.7beda18c.js",
+    "runtime-main.js.map": "/react-clock/static/js/runtime-main.7beda18c.js.map",
+    "static/js/2.dab9617f.chunk.js": "/react-clock/static/js/2.dab9617f.chunk.js",
+    "static/js/2.dab9617f.chunk.js.map": "/react-clock/static/js/2.dab9617f.chunk.js.map",
+    "index.html": "/react-clock/index.html",
+    "precache-manifest.00d85a820de981403ac2199c0f9c79f3.js": "/react-clock/precache-manifest.00d85a820de981403ac2199c0f9c79f3.js",
+    "service-worker.js": "/react-clock/service-worker.js",
+    "static/css/main.2eb52c6a.chunk.css.map": "/react-clock/static/css/main.2eb52c6a.chunk.css.map",
+    "static/js/2.dab9617f.chunk.js.LICENSE.txt": "/react-clock/static/js/2.dab9617f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7beda18c.js",
+    "static/js/2.dab9617f.chunk.js",
+    "static/css/main.2eb52c6a.chunk.css",
+    "static/js/main.5b8a36a2.chunk.js"
+  ]
+}
