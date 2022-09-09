@@ -10,16 +10,35 @@ import {
 } from './constants';
 import './Clock.css';
 
-function reducer(state, action) {
-  switch (action.type) {
+enum TimeActionKind {
+  SET_SECOND = 'SET_SECOND',
+  SET_MINUTE = 'SET_MINUTE',
+  SET_HOUR = 'SET_HOUR',
+  SET_MULTIPLE = 'SET_MULTIPLE'
+}
+
+interface TimeAction {
+  type: TimeActionKind;
+  payload: number | TimeState;
+}
+
+interface TimeState {
+  secondRatio: any;
+  minuteRatio: any;
+  hourRatio: any;
+}
+
+function reducer(state: TimeState, action: TimeAction) {
+  const { type, payload } = action;
+  switch (type) {
     case 'SET_SECOND':
-      return {secondRatio: action.payload};
+      return {secondRatio: payload};
     case 'SET_MINUTE':
-      return {minuteRatio: action.payload};
+      return {minuteRatio: payload};
     case 'SET_HOUR':
-      return {hourRatio: action.payload};
+      return {hourRatio: payload};
     case 'SET_MULTIPLE':
-      return {...state, ...action.payload};
+      return {...state, ...payload as TimeState};
     default:
       throw new Error();
   }
@@ -31,9 +50,9 @@ function Clock() {
   const [loading, setLoading] = useState(true);
 
   const setClock = useCallback(() => {
-      dispatch({type: 'SET_SECOND', payload: helpers.getTime(currentDate, 'GET_SECOND')})
-      dispatch({type: 'SET_MINUTE', payload: helpers.getTime(currentDate, 'GET_MINUTE')})
-      dispatch({type: 'SET_MULTIPLE', payload: helpers.getTime(currentDate, 'GET_HOUR')})
+      dispatch({type: TimeActionKind.SET_SECOND, payload: helpers.getTime(currentDate, 'GET_SECOND')})
+      dispatch({type: TimeActionKind.SET_MINUTE, payload: helpers.getTime(currentDate, 'GET_MINUTE')})
+      dispatch({type: TimeActionKind.SET_HOUR, payload: helpers.getTime(currentDate, 'GET_HOUR')})
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentDate],
@@ -41,13 +60,13 @@ function Clock() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      new Promise((resolve) => {
+      new Promise<void>((resolve) => {
         resolve(helpers.loadTime(url, setCurrentDate));
       })
-        .then(setClock())
+        .then(() => setClock())
         .catch((err) => {
           clearInterval(interval);
-          console.err(`${errMessage}: ${err}`) 
+          console.error(`${errMessage}: ${err}`) 
         })
     }, intervalDelay);
     return () => {clearInterval(interval)}
@@ -58,7 +77,7 @@ function Clock() {
       setTimeout(() => resolve(helpers.loadTime(url, setCurrentDate)), initDelay);
     })
       .then((data) => { 
-        dispatch({type: 'SET_MULTIPLE', payload: 
+        dispatch({type: TimeActionKind.SET_MULTIPLE, payload: 
         {
           secondRatio: helpers.getTime(currentDate, 'GET_SECOND'),
           minuteRatio: helpers.getTime(currentDate, 'GET_MINUTE'),
@@ -66,7 +85,7 @@ function Clock() {
         }})
       })
       .finally(() => setLoading(false))
-      .catch((err) => console.err(`${errMessage}: ${err}`));
+      .catch((err) => console.error(`${errMessage}: ${err}`));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

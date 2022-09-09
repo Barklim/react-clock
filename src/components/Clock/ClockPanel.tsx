@@ -1,6 +1,12 @@
 import React from 'react'
 
-function ClockPanel({hourRatio, minuteRatio, secondRatio}) {
+type Time = { 
+  hourRatio: number; 
+  minuteRatio: number;
+  secondRatio: number 
+}
+
+function ClockPanel({hourRatio, minuteRatio, secondRatio}: Time) {
   return (
       <div className="clock">
         <div className="hand hour" style={{transform: `translate(-50%) rotate(${hourRatio * 360}deg)`}}></div>
