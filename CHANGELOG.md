@@ -3,4 +3,4 @@
 
 ### New
 
-* implemented basic logic and ui ([f0a822d](https://github.com/Barklim/react-clock/commit/f0a822dd505fecd24662820b31514e10de24cd3e))
+* implemented basic logic and ui ([eeca2f7](https://github.com/Barklim/react-clock/commit/eeca2f7938e2039f401372f40ea4b015a982a2b3))

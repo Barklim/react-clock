@@ -1,8 +1,10 @@
-# [ClockApp](https://barklim.github.io/react-clock/) & [semisircle](https://codesandbox.io/s/staging-pond-7n7ijh?file=/src/styles.scss)
+## ClockApp
 
 This simple clock app is a test task.
 
-This project have [CHANGELOG.md](https://barklim.github.io/react-clock/CHANGELOG.md)
+First [semisircle task](https://codesandbox.io/s/staging-pond-7n7ijh?file=/src/styles.scss)
+
+This project have [CHANGELOG.md](https://github.com/Barklim/react-clock/blob/main/CHANGELOG.md)
 
 You can see how it work on [GithubPages](https://barklim.github.io/react-clock/)
 
@@ -15,7 +17,6 @@ Bla bla bla, how it works.
 
 ## Todo
 
-+ base logics
 - typescript
 - unit tests
 - dockerfile
