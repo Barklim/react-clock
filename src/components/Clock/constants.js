@@ -1,4 +1,4 @@
-export const url = 'http://worldtimeapi.org/api/timezone/Europe/Moscow';
+export const url = 'https://worldtimeapi.org/api/timezone/Europe/Moscow';
 // export const url = 'http://worldtimeapi.org/api/123';
 
 export const initDelay = 2000;
