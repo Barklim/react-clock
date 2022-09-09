@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback, useReducer } from 'react';
-
-import './Clock.css';
 import ClockPanel from './ClockPanel';
-
+import helpers from '../../helpers';
 import {
     url,
     initDelay, 
@@ -10,23 +8,7 @@ import {
     errMessage,
     initialState
 } from './constants';
-
-async function fetchUrl(url) {
-  let response = await fetch(url);
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      throw new Error(response.status);
-    }
-}
-
-async function loadTime(url, setCurrentDate) {
-  const dateTime = await fetchUrl(url);
-
-  setCurrentDate(new Date(dateTime.datetime));
-
-  return dateTime;
-}
+import './Clock.css';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -48,18 +30,19 @@ function Clock() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [loading, setLoading] = useState(true);
 
-  const setClock = useCallback(() => {    
-    dispatch({type: 'SET_SECOND', payload: currentDate.getSeconds() / 60})
-    dispatch({type: 'SET_MINUTE', payload: currentDate.getMinutes() / 60})
-    dispatch({type: 'SET_MULTIPLE', payload: currentDate.getHours() / 12})
+  const setClock = useCallback(() => {
+      dispatch({type: 'SET_SECOND', payload: helpers.getTime(currentDate, 'GET_SECOND')})
+      dispatch({type: 'SET_MINUTE', payload: helpers.getTime(currentDate, 'GET_MINUTE')})
+      dispatch({type: 'SET_MULTIPLE', payload: helpers.getTime(currentDate, 'GET_HOUR')})
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentDate],
   )
 
   useEffect(() => {
     const interval = setInterval(() => {
       new Promise((resolve) => {
-        resolve(loadTime(url, setCurrentDate));
+        resolve(helpers.loadTime(url, setCurrentDate));
       })
         .then(setClock())
         .catch((err) => {
@@ -72,14 +55,14 @@ function Clock() {
 
   useEffect(() => {
     new Promise((resolve) => {
-      setTimeout(() => resolve(loadTime(url, setCurrentDate)), initDelay);
+      setTimeout(() => resolve(helpers.loadTime(url, setCurrentDate)), initDelay);
     })
       .then((data) => { 
         dispatch({type: 'SET_MULTIPLE', payload: 
         {
-          secondRatio: currentDate.getSeconds() / 60, 
-          minuteRatio : currentDate.getMinutes() / 60,
-          hourRatio : currentDate.getHours() / 12
+          secondRatio: helpers.getTime(currentDate, 'GET_SECOND'),
+          minuteRatio: helpers.getTime(currentDate, 'GET_MINUTE'),
+          hourRatio : helpers.getTime(currentDate, 'GET_HOUR')
         }})
       })
       .finally(() => setLoading(false))
