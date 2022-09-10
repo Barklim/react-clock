@@ -1,4 +1,4 @@
-export function getTime(date, action) {
+export function getTime(date: Date, action: string) {
   switch (action) {
     case 'GET_SECOND':
       return date.getSeconds() / 60;
