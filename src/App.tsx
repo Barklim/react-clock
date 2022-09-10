@@ -1,10 +1,13 @@
 import React from 'react';
-import Clock from './components/Clock';
+import { Clocker } from './components/Clock';
 
 function App() {
   return (
     <>
-      <Clock/>
+      <Clocker>
+        <Clocker.Clock />
+        <Clocker.Label>Label</Clocker.Label>
+      </Clocker>
     </>
   );
 }

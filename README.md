@@ -13,11 +13,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Explanation
 
 This application sends requests at a given interval to render the current exact time.
-Bla bla bla, how it works.
+Implemented a pattern of composite components to display subtext.
 
 ## Todo
 
-- typescript
 - unit tests
 - dockerfile
 
