@@ -7,8 +7,7 @@ function App() {
     <>
       {/* <Clocker initialValue={false}> */}
       <Clocker>
-        {/* <Clocker.Clock format={roman}/> */}
-        <Clocker.Clock/>
+        <Clocker.Clock format={roman}/>
         <Clocker.Label>Moscow</Clocker.Label>
       </Clocker>
     </>

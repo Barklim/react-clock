@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, useReducer, PropsWithChildren } from 'react';
+import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { useClockContext } from '../../hooks/useClockContext';
 import { ClockerCtx } from '../../contexts/clocker';
 import { State } from './interfaces/interfaces';
-import { Action, ActionKind } from './types/types';
+import { Action, ActionKind, ContentProps } from './types/types';
 import ClockPanel from './ClockPanel';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -16,10 +16,6 @@ import {
     arabic
 } from './constants';
 import './Clock.css';
-
-type ContentProps = {
-  format: string
-}
 
 const reducer = (state: State, action: Action) => {
   const { type, payload } = action;

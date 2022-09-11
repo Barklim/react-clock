@@ -5,6 +5,15 @@ export enum ActionKind {
   }
 
 export type Action = {
-    type: ActionKind;
-    payload: number;
-  }
+  type: ActionKind;
+  payload: number;
+}
+
+export enum FormatDigits {
+  arabic = 'arabic',
+  roman = 'roman'
+}
+
+export type ContentProps = {
+  format: string
+}

@@ -17,7 +17,11 @@ Implemented a pattern of composite components to display subtext.
 
 ## Todo
 
-- unit tests
+- interval scheduler modules
+- react-page-visibility wrapper
+- storybook | lil-gui
+- prettier
+- i18n hoc 
 - dockerfile
 
 ### Requirements 
