@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
+import React, { useState, useEffect, useCallback, useReducer, PropsWithChildren } from 'react';
 import { useClockContext } from '../../hooks/useClockContext';
 import { ClockerCtx } from '../../contexts/clocker';
 import { State } from './interfaces/interfaces';
 import { Action, ActionKind } from './types/types';
 import ClockPanel from './ClockPanel';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import helpers from '../../helpers';
 import {
     url,
@@ -83,7 +85,11 @@ function Clock({ format } : ContentProps) {
         minuteRatio={state.minuteRatio} 
         hourRatio={state.hourRatio}
         format={format}
-      /> : 'Loading...'}
+      /> : 
+      <SkeletonTheme baseColor="#dddbdb" >
+        <Skeleton height={300} width={300} borderRadius={150}></Skeleton>
+      </SkeletonTheme>
+      }
     </>
   );
 }

@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { useClockContext } from '../../hooks/useClockContext';
 import { ClockerCtx } from '../../contexts/clocker';
 import styled from 'styled-components';
@@ -13,7 +15,11 @@ const Label = (props: Props) => {
   return (
     <>
       {!loading ? 
-      <StyledLabel>{props.children}</StyledLabel>: null}
+        <StyledLabel>{props.children}</StyledLabel> : 
+        <SkeletonTheme baseColor="#dddbdb" >
+          <Skeleton height={60} width={300} style={{marginTop: '0.5rem'}}></Skeleton>
+        </SkeletonTheme> 
+      }
     </>
   );
 }
