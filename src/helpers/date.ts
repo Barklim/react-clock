@@ -1,3 +1,5 @@
+import { arabicFormat, romanFormat, arabic } from '../components/Clock/constants';
+
 export function getTime(date: Date, action: string) {
   switch (action) {
     case 'GET_SECOND':
@@ -10,3 +12,5 @@ export function getTime(date: Date, action: string) {
       throw new Error();
   }
 }
+
+export const getFormat = (format: string) => format === arabic ? arabicFormat : romanFormat

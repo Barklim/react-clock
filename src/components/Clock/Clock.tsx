@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback, useReducer } from 'react';
+import { useClockContext } from '../../hooks/useClockContext';
+import { ClockerCtx } from '../../contexts/clocker';
 import { State } from './interfaces/interfaces';
 import { Action, ActionKind } from './types/types';
 import ClockPanel from './ClockPanel';
@@ -9,8 +11,13 @@ import {
     intervalDelay,
     errMessage,
     initialState,
+    arabic
 } from './constants';
 import './Clock.css';
+
+type ContentProps = {
+  format: string
+}
 
 const reducer = (state: State, action: Action) => {
   const { type, payload } = action;
@@ -26,10 +33,10 @@ const reducer = (state: State, action: Action) => {
   }
 }
 
-function Clock() {
+function Clock({ format } : ContentProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [loading, setLoading] = useState(true);
+  const { loading, setLoading } = useClockContext() as ClockerCtx;
 
   const dispatchTime = () => {
     dispatch({type: ActionKind.SET_SECOND, payload: helpers.getTime(currentDate, 'GET_SECOND')})
@@ -75,9 +82,14 @@ function Clock() {
         secondRatio={state.secondRatio} 
         minuteRatio={state.minuteRatio} 
         hourRatio={state.hourRatio}
+        format={format}
       /> : 'Loading...'}
     </>
   );
 }
+
+Clock.defaultProps = {
+  format: arabic,
+};
 
 export { Clock };
