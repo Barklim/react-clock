@@ -11,7 +11,8 @@ export type Action = {
 
 export enum FormatDigits {
   arabic = 'arabic',
-  roman = 'roman'
+  roman = 'roman',
+  emoji = 'emoji'
 }
 
 export type ContentProps = {

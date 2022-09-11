@@ -1,4 +1,4 @@
-import { arabicFormat, romanFormat, arabic, errMessage } from '../components/Clock/constants';
+import { arabicFormat, romanFormat, emojiFormat, arabic, roman, emoji, errMessage } from '../components/Clock/constants';
 import { getErrorMessage } from './errorHandler'
 
 export function getTime(date: Date, action: string) {
@@ -14,7 +14,18 @@ export function getTime(date: Date, action: string) {
   }
 }
 
-export const getFormat = (format: string) => format === arabic ? arabicFormat : romanFormat
+export const getFormat = (format: string) => {
+  switch (format) {
+    case arabic:
+      return arabicFormat;
+    case roman:
+      return romanFormat;
+    case emoji:
+      return emojiFormat;
+    default:
+      return romanFormat;
+  }
+}
 
 export const changeTimeZone = (date: Date, timeZone: string) => {
   if (typeof date === 'string') {
