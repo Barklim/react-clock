@@ -14,7 +14,7 @@ const Clocker = ({ initialValue, ...props} : ContentProps ) => {
 
   return (
     <ClockProvider value={{loading, setLoading}}>
-      <>{props.children}</>
+      {props.children}
     </ClockProvider>
   );
 }

@@ -3,7 +3,7 @@ import { Moscow } from "../../constants";
 export const url = `https://worldtimeapi.org/api/timezone/${Moscow}`;
 
 export const initDelay = 2000;
-export const intervalDelay = 5000;
+export const intervalDelay = 1000;
 
 export const errMessage = 'Something wrong';
 
